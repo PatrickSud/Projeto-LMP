@@ -69,6 +69,8 @@ export function useHabits() {
 
       await setDoc(docRef, trackingData, { merge: true });
       
+      setTrackings(prev => ({
+        ...prev,
         [habitId]: { ...trackingData, id: trackingId }
       }));
     } catch (error) {

@@ -7,13 +7,13 @@ export function NoteCard() {
   const [localNote, setLocalNote] = useState('');
 
   useEffect(() => {
-    if (log && log.intention !== undefined) {
-      setLocalNote(log.intention);
+    if (log && (log.intention !== undefined || log.learned !== undefined)) {
+      setLocalNote(log.intention || log.learned || '');
     }
-  }, [log?.intention]);
+  }, [log?.intention, log?.learned]);
 
   const handleBlur = () => {
-    if (log && localNote !== log.intention) {
+    if (log && localNote !== (log.intention || log.learned || '')) {
       updateNote(localNote);
     }
   };

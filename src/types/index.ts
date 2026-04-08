@@ -53,4 +53,12 @@ export interface FinanceRecord {
   description: string;
   date: Date;
   monthYear: string;
+  category?: string; // ex: 'Alimentação', 'Salário', 'Lazer'…
+}
+
+export interface MonthNote {
+  id: string; // userId_monthYear
+  userId: string;
+  monthYear: string;
+  note: string;
 }

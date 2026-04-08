@@ -2,6 +2,8 @@ import { CircularTracker } from '../components/dashboard/CircularTracker';
 import { EmotionSelector } from '../components/dashboard/EmotionSelector';
 import { DailyChecklist } from '../components/dashboard/DailyChecklist';
 import { NoteCard } from '../components/dashboard/NoteCard';
+import { DailyFinanceSummary } from '../components/dashboard/DailyFinanceSummary';
+import { WheelMiniCard } from '../components/dashboard/WheelMiniCard';
 
 export function Dashboard() {
   return (
@@ -14,8 +16,10 @@ export function Dashboard() {
       </header>
       
       <CircularTracker />
+      <WheelMiniCard />
       <EmotionSelector />
       <DailyChecklist />
+      <DailyFinanceSummary />
       <NoteCard />
     </div>
   );

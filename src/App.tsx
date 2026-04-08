@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Dashboard } from './pages/Dashboard';
 import { Vida } from './pages/Vida';
+import { Planejamento } from './pages/Planejamento';
 
 function App() {
   return (
@@ -11,11 +12,7 @@ function App() {
           <Route index element={<Dashboard />} />
           
           {/* Placeholders para as próximas telas */}
-          <Route path="planejamento" element={
-            <div className="flex items-center justify-center h-full text-gray-500 p-6 text-center">
-              Módulo de Planejamento em desenvolvimento...
-            </div>
-          } />
+          <Route path="planejamento" element={<Planejamento />} />
           
           <Route path="vida" element={<Vida />} />
           

@@ -21,8 +21,8 @@ export function useWheelOfLife() {
         const records = snapshot.docs.map((docSnap) => {
           const data = docSnap.data();
           return {
-            id: docSnap.id,
             ...data,
+            id: docSnap.id,
             createdAt:
               data.createdAt instanceof Timestamp
                 ? data.createdAt.toDate()

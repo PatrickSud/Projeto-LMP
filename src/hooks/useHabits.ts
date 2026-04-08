@@ -13,7 +13,7 @@ export function useHabits() {
   useEffect(() => {
     const q = query(collection(db, 'habits'), where('userId', '==', userId));
     const unsubscribe = onSnapshot(q, (snapshot) => {
-      const loadedHabits = snapshot.docs.map(docSnap => ({ id: docSnap.id, ...docSnap.data() } as Habit));
+      const loadedHabits = snapshot.docs.map(docSnap => ({ ...docSnap.data(), id: docSnap.id } as Habit));
       setHabits(loadedHabits);
       setLoading(false);
     });
@@ -32,7 +32,7 @@ export function useHabits() {
     snapshot.docs.forEach(docSnap => {
       const data = docSnap.data() as HabitTracking;
       // Indexando localmente usando o habitId como chave
-      loadedTrackings[data.habitId] = { id: docSnap.id, ...data };
+      loadedTrackings[data.habitId] = { ...data, id: docSnap.id };
     });
     
     // Merge para não subscrever trackings de outros dias em cache (se aplicável no futuro)
@@ -69,9 +69,7 @@ export function useHabits() {
 
       await setDoc(docRef, trackingData, { merge: true });
       
-      setTrackings(prev => ({
-        ...prev,
-        [habitId]: { id: trackingId, ...trackingData }
+        [habitId]: { ...trackingData, id: trackingId }
       }));
     } catch (error) {
       console.error("Erro ao alternar status do hábito:", error);

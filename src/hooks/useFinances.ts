@@ -57,8 +57,8 @@ export function useFinances(monthYear: string) {
         const loaded = snapshot.docs.map((docSnap) => {
           const data = docSnap.data();
           return {
-            id: docSnap.id,
             ...data,
+            id: docSnap.id,
             date: data.date instanceof Timestamp ? data.date.toDate() : new Date(data.date),
           } as FinanceRecord;
         });

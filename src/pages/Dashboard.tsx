@@ -1,4 +1,5 @@
 import { CircularTracker } from '../components/dashboard/CircularTracker';
+import { EmotionSelector } from '../components/dashboard/EmotionSelector';
 import { DailyChecklist } from '../components/dashboard/DailyChecklist';
 import { NoteCard } from '../components/dashboard/NoteCard';
 
@@ -13,6 +14,7 @@ export function Dashboard() {
       </header>
       
       <CircularTracker />
+      <EmotionSelector />
       <DailyChecklist />
       <NoteCard />
     </div>

@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { Plus } from 'lucide-react';
+import { Plus, Trash2 } from 'lucide-react';
 import type { Habit } from '../../types';
 
 interface HabitManagerProps {
   habits: Habit[];
   onAddHabit: (title: string, daysOfWeek: number[]) => Promise<boolean>;
   onToggleActive: (habitId: string, isActive: boolean) => void;
+  onDeleteHabit: (habitId: string) => void;
 }
 
 const WEEK_DAYS = [
@@ -18,7 +19,7 @@ const WEEK_DAYS = [
   { id: 6, label: 'S' }
 ];
 
-export function HabitManager({ habits, onAddHabit, onToggleActive }: HabitManagerProps) {
+export function HabitManager({ habits, onAddHabit, onToggleActive, onDeleteHabit }: HabitManagerProps) {
   const [newTitle, setNewTitle] = useState('');
   const [selectedDays, setSelectedDays] = useState<number[]>([1, 2, 3, 4, 5]); // Seg a Sex base
   const [isAdding, setIsAdding] = useState(false);
@@ -116,16 +117,29 @@ export function HabitManager({ habits, onAddHabit, onToggleActive }: HabitManage
                   ))}
                 </div>
               </div>
-              <button
-                onClick={() => onToggleActive(habit.id, !habit.isActive)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
-                  habit.isActive 
-                    ? 'bg-red-50 text-red-500 hover:bg-red-100' 
-                    : 'bg-green-50 text-green-600 hover:bg-green-100'
-                }`}
-              >
-                {habit.isActive ? 'Pausar' : 'Ativar'}
-              </button>
+              <div className="flex items-center space-x-2">
+                <button
+                  onClick={() => onToggleActive(habit.id, !habit.isActive)}
+                  className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    habit.isActive 
+                      ? 'bg-orange-50 text-orange-500 hover:bg-orange-100' 
+                      : 'bg-green-50 text-green-600 hover:bg-green-100'
+                  }`}
+                >
+                  {habit.isActive ? 'Pausar' : 'Ativar'}
+                </button>
+                <button
+                  onClick={() => {
+                    if(window.confirm('Tem certeza que deseja excluir permanentemente este hábito?')) {
+                      onDeleteHabit(habit.id);
+                    }
+                  }}
+                  className="p-1.5 text-gray-400 hover:text-red-500 hover:bg-red-50 rounded-lg transition-colors"
+                  title="Excluir hábito"
+                >
+                  <Trash2 size={16} />
+                </button>
+              </div>
             </div>
           ))
         )}

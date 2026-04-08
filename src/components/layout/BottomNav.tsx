@@ -1,10 +1,9 @@
 import { NavLink } from 'react-router-dom';
-import { Home, Calendar, PieChart, Wallet } from 'lucide-react';
+import { Home, PieChart, Wallet } from 'lucide-react';
 
 export function BottomNav() {
   const routes = [
     { path: '/', label: 'Meu Ciclo', icon: Home },
-    { path: '/planejamento', label: 'Planejamento', icon: Calendar },
     { path: '/vida', label: 'Vida', icon: PieChart },
     { path: '/financas', label: 'Finanças', icon: Wallet },
   ];

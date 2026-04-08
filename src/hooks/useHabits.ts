@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { collection, query, where, onSnapshot, addDoc, setDoc, doc, getDocs } from 'firebase/firestore';
+import { collection, query, where, onSnapshot, addDoc, setDoc, doc, getDocs, deleteDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import type { Habit, HabitTracking } from '../types';
 
@@ -88,5 +88,15 @@ export function useHabits() {
     }
   };
 
-  return { habits, trackings, loading, addHabit, toggleHabitCompletion, fetchTrackingsForDate, toggleHabitActive };
+  // Excluir permanentemente um hábito
+  const deleteHabit = async (habitId: string) => {
+    try {
+      const docRef = doc(db, 'habits', habitId);
+      await deleteDoc(docRef);
+    } catch (error) {
+      console.error("Erro ao excluir hábito", error);
+    }
+  };
+
+  return { habits, trackings, loading, addHabit, toggleHabitCompletion, fetchTrackingsForDate, toggleHabitActive, deleteHabit };
 }

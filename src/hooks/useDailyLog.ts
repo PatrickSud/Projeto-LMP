@@ -85,5 +85,18 @@ export function useDailyLog() {
     }
   };
 
-  return { log, loading, toggleTask, updateNote };
+  const updateEmotion = async (level: number) => {
+    if (!log) return;
+    
+    const docId = `${userId}_${log.date}`;
+    const docRef = doc(db, 'daily_logs', docId);
+    
+    try {
+      await setDoc(docRef, { emotionLevel: level }, { merge: true });
+    } catch (error) {
+      console.error("Erro ao salvar emoção:", error);
+    }
+  };
+
+  return { log, loading, toggleTask, updateNote, updateEmotion };
 }

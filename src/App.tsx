@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Dashboard } from './pages/Dashboard';
+import { Vida } from './pages/Vida';
 
 function App() {
   return (
@@ -16,11 +17,7 @@ function App() {
             </div>
           } />
           
-          <Route path="vida" element={
-            <div className="flex items-center justify-center h-full text-gray-500 p-6 text-center">
-              Módulo Roda da Vida em desenvolvimento...
-            </div>
-          } />
+          <Route path="vida" element={<Vida />} />
           
           <Route path="financas" element={
             <div className="flex items-center justify-center h-full text-gray-500 p-6 text-center">

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { collection, query, where, orderBy, limit, getDocs, addDoc } from 'firebase/firestore';
+import { collection, query, where, getDocs, addDoc } from 'firebase/firestore';
 import { db } from '../lib/firebase';
 import type { WheelOfLife } from '../types';
 
@@ -15,16 +15,25 @@ export function useWheelOfLife() {
     try {
       const q = query(
         collection(db, 'wheel_of_life'),
-        where('userId', '==', userId),
-        orderBy('createdAt', 'desc'),
-        limit(1)
+        where('userId', '==', userId)
       );
       
       const querySnapshot = await getDocs(q);
       
       if (!querySnapshot.empty) {
-        const docSnap = querySnapshot.docs[0];
-        setWheelData({ id: docSnap.id, ...docSnap.data() } as WheelOfLife);
+        const records = querySnapshot.docs.map(doc => ({
+          id: doc.id,
+          ...doc.data()
+        }));
+        
+        // Ordena do mais recente para o mais antigo localmente
+        records.sort((a: any, b: any) => {
+          const timeA = a.createdAt?.toMillis ? a.createdAt.toMillis() : 0;
+          const timeB = b.createdAt?.toMillis ? b.createdAt.toMillis() : 0;
+          return timeB - timeA;
+        });
+
+        setWheelData(records[0] as WheelOfLife);
       }
     } catch (error) {
       console.error("Erro ao buscar a Roda da Vida:", error);

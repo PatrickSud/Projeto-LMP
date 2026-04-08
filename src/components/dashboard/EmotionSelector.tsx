@@ -1,26 +1,7 @@
 import { useState } from 'react';
 import { ChevronDown, Sparkles, AlertCircle } from 'lucide-react';
 import { useDailyLog } from '../../hooks/useDailyLog';
-
-const EMOTIONS = [
-  { level: 700, label: 'Iluminação', color: 'bg-yellow-100 text-yellow-700' },
-  { level: 600, label: 'Paz', color: 'bg-cyan-100 text-cyan-700' },
-  { level: 540, label: 'Alegria', color: 'bg-orange-100 text-orange-700' },
-  { level: 500, label: 'Amor', color: 'bg-rose-100 text-rose-700' },
-  { level: 400, label: 'Razão', color: 'bg-blue-100 text-blue-700' },
-  { level: 350, label: 'Aceitação', color: 'bg-teal-100 text-teal-700' },
-  { level: 310, label: 'Disposição', color: 'bg-green-100 text-green-700' },
-  { level: 250, label: 'Neutralidade', color: 'bg-gray-100 text-gray-700' },
-  { level: 200, label: 'Coragem', color: 'bg-violet-100 text-violet-700' },
-  { level: 175, label: 'Orgulho', color: 'bg-red-50 text-red-700' },
-  { level: 150, label: 'Raiva', color: 'bg-red-100 text-red-800' },
-  { level: 125, label: 'Desejo', color: 'bg-pink-100 text-pink-700' },
-  { level: 100, label: 'Medo', color: 'bg-stone-200 text-stone-700' },
-  { level: 76, label: 'Tristeza', color: 'bg-indigo-100 text-indigo-700' },
-  { level: 50, label: 'Apatia', color: 'bg-gray-200 text-gray-500' },
-  { level: 30, label: 'Culpa', color: 'bg-zinc-800 text-zinc-300' },
-  { level: 20, label: 'Vergonha', color: 'bg-black text-gray-300' },
-];
+import { EMOTIONS } from '../../utils/emotions';
 
 export function EmotionSelector() {
   const { log, loading, updateEmotion } = useDailyLog();

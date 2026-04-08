@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Layout } from './components/layout/Layout';
 import { Dashboard } from './pages/Dashboard';
 import { Vida } from './pages/Vida';
+import { Jornada } from './pages/Jornada';
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Dashboard />} />
+          
+          <Route path="jornada" element={<Jornada />} />
           
           {/* Rotas Auxiliares */}
           <Route path="vida" element={<Vida />} />

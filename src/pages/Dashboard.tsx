@@ -1,0 +1,20 @@
+import { CircularTracker } from '../components/dashboard/CircularTracker';
+import { DailyChecklist } from '../components/dashboard/DailyChecklist';
+import { NoteCard } from '../components/dashboard/NoteCard';
+
+export function Dashboard() {
+  return (
+    <div className="px-6 pt-12 pb-8 max-w-md mx-auto">
+      <header className="mb-8">
+        <h1 className="font-serif text-3xl sm:text-4xl text-primary-dark leading-tight">
+          Bem-vinda<br/>ao novo Ciclo!
+        </h1>
+        <p className="text-gray-500 mt-2 text-[15px]">O que vamos realizar hoje?</p>
+      </header>
+      
+      <CircularTracker />
+      <DailyChecklist />
+      <NoteCard />
+    </div>
+  );
+}

@@ -4,10 +4,10 @@ import { Users, Sparkles, Brain, Dumbbell, ArrowRight } from 'lucide-react';
 
 // ── Configuração dos pilares ────────────────────────────────────────────────
 const PILLARS = [
-  { key: 'social',        label: 'Social',          icon: Users,    bar: 'bg-blue-400' },
-  { key: 'spirituality',  label: 'Espirit.',         icon: Sparkles, bar: 'bg-violet-400' },
-  { key: 'intellectual',  label: 'Intelectual',      icon: Brain,    bar: 'bg-amber-400' },
-  { key: 'physical',      label: 'Físico',           icon: Dumbbell, bar: 'bg-emerald-400' },
+  { key: 'social', label: 'Social', icon: Users, bar: 'bg-blue-400' },
+  { key: 'spirituality', label: 'Espirit.', icon: Sparkles, bar: 'bg-violet-400' },
+  { key: 'intellectual', label: 'Intelectual', icon: Brain, bar: 'bg-amber-400' },
+  { key: 'physical', label: 'Físico', icon: Dumbbell, bar: 'bg-emerald-400' },
 ] as const;
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -21,8 +21,8 @@ function ScoreBadge({ score }: { score: number }) {
     score >= 7
       ? 'bg-emerald-100 text-emerald-700'
       : score >= 4
-      ? 'bg-amber-100 text-amber-700'
-      : 'bg-rose-100 text-rose-700';
+        ? 'bg-amber-100 text-amber-700'
+        : 'bg-rose-100 text-rose-700';
   return (
     <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${cls}`}>
       {score}/10

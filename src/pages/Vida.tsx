@@ -6,10 +6,10 @@ import { FeedbackSection } from '../components/vida/FeedbackSection';
 
 // ── Configuração dos pilares (compartilhada com WheelMiniCard) ──────────────
 const PILLARS = [
-  { key: 'social',       label: 'Social',        icon: Users,    bar: 'bg-blue-400' },
-  { key: 'spirituality', label: 'Espiritualidade',icon: Sparkles, bar: 'bg-violet-400' },
-  { key: 'intellectual', label: 'Intelectual',    icon: Brain,    bar: 'bg-amber-400' },
-  { key: 'physical',     label: 'Físico',         icon: Dumbbell, bar: 'bg-emerald-400' },
+  { key: 'social', label: 'Social', icon: Users, bar: 'bg-blue-400' },
+  { key: 'spirituality', label: 'Espiritualidade', icon: Sparkles, bar: 'bg-violet-400' },
+  { key: 'intellectual', label: 'Intelectual', icon: Brain, bar: 'bg-amber-400' },
+  { key: 'physical', label: 'Físico', icon: Dumbbell, bar: 'bg-emerald-400' },
 ] as const;
 
 function averageScore(scores: Record<string, number>) {
@@ -22,8 +22,8 @@ function ScoreBadge({ score }: { score: number }) {
     score >= 7
       ? 'bg-emerald-100 text-emerald-700'
       : score >= 4
-      ? 'bg-amber-100 text-amber-700'
-      : 'bg-rose-100 text-rose-700';
+        ? 'bg-amber-100 text-amber-700'
+        : 'bg-rose-100 text-rose-700';
   return (
     <span className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${cls}`}>
       {score}/10
@@ -48,10 +48,10 @@ export function Vida() {
   useEffect(() => {
     if (wheelData) {
       setScores({
-        social:        wheelData.scores.social        || 5,
-        spirituality:  wheelData.scores.spirituality  || 5,
-        intellectual:  wheelData.scores.intellectual  || 5,
-        physical:      wheelData.scores.physical      || 5,
+        social: wheelData.scores.social || 5,
+        spirituality: wheelData.scores.spirituality || 5,
+        intellectual: wheelData.scores.intellectual || 5,
+        physical: wheelData.scores.physical || 5,
       });
       setFeedback(wheelData.feedback || '');
     }
@@ -98,10 +98,10 @@ export function Vida() {
 
       {/* ── Pilares ── */}
       <div className="space-y-4 mb-2 flex-grow">
-        <PillarSlider label="Social"          icon={<Users    size={18} strokeWidth={2.5} />} value={scores.social}        onChange={(v) => handleScoreChange('social', v)} />
-        <PillarSlider label="Espiritualidade" icon={<Sparkles size={18} strokeWidth={2.5} />} value={scores.spirituality}  onChange={(v) => handleScoreChange('spirituality', v)} />
-        <PillarSlider label="Intelectual"     icon={<Brain    size={18} strokeWidth={2.5} />} value={scores.intellectual}  onChange={(v) => handleScoreChange('intellectual', v)} />
-        <PillarSlider label="Físico"          icon={<Dumbbell size={18} strokeWidth={2.5} />} value={scores.physical}      onChange={(v) => handleScoreChange('physical', v)} />
+        <PillarSlider label="Social" icon={<Users size={18} strokeWidth={2.5} />} value={scores.social} onChange={(v) => handleScoreChange('social', v)} />
+        <PillarSlider label="Espiritualidade" icon={<Sparkles size={18} strokeWidth={2.5} />} value={scores.spirituality} onChange={(v) => handleScoreChange('spirituality', v)} />
+        <PillarSlider label="Intelectual" icon={<Brain size={18} strokeWidth={2.5} />} value={scores.intellectual} onChange={(v) => handleScoreChange('intellectual', v)} />
+        <PillarSlider label="Físico" icon={<Dumbbell size={18} strokeWidth={2.5} />} value={scores.physical} onChange={(v) => handleScoreChange('physical', v)} />
         <FeedbackSection
           value={feedback}
           onChange={(val) => { setFeedback(val); if (savedSuccess) setSavedSuccess(false); }}
@@ -113,11 +113,10 @@ export function Vida() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 ${
-            saving
+          className={`w-full py-4 rounded-xl font-bold text-white shadow-lg transition-all duration-300 flex items-center justify-center space-x-2 ${saving
               ? 'bg-primary/70 cursor-not-allowed'
               : 'bg-primary hover:bg-primary-dark hover:shadow-primary/30 transform hover:-translate-y-1'
-          }`}
+            }`}
         >
           {saving ? (
             <>
@@ -129,9 +128,8 @@ export function Vida() {
           )}
         </button>
 
-        <div className={`mt-4 h-6 flex items-center text-green-600 text-sm font-medium transition-all duration-500 ${
-          savedSuccess ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
-        }`}>
+        <div className={`mt-4 h-6 flex items-center text-green-600 text-sm font-medium transition-all duration-500 ${savedSuccess ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-2 pointer-events-none'
+          }`}>
           <CheckCircle2 size={16} className="mr-2" />
           Avaliação guardada com sucesso!
         </div>
